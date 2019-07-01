@@ -1,0 +1,130 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>layout 后台大布局 - Layui</title>
+  <link rel="stylesheet" href="layui/css/layui.css">
+</head>
+
+<body class="layui-layout-body">
+  <div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+      <div class="layui-logo">艺嘉学员管理</div>
+      <!-- 头部区域（可配合layui已有的水平导航） -->
+
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+          <a href="javascript:;">
+            <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+            贤心
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="">基本资料</a></dd>
+            <dd><a href="">安全设置</a></dd>
+            <dd><a href="">退出登录</a></dd>
+          </dl>
+        </li>
+      </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+      <div class="layui-side-scroll" id="test1">
+        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test" id="nav">
+        </ul>
+      </div>
+    </div>
+
+    <div class="layui-body">
+      <!-- 内容主体区域 -->
+      <!--选项卡-->
+      <div class="layui-admin-pagetabs">
+        <div class="layui-tab layui-tab-brief" lay-allowClose="true" lay-filter="pagetabs">
+          <ul class="layui-tab-title layui-bg-white">
+            <li class="layui-this" lay-id="首页|1"><i class="layui-icon layui-icon-home"></i></li>
+          </ul>
+          <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+              <iframe src="home/home.html" class="layui-admin-iframe" scrolling="no" frameborder="0"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="layui-footer">
+      <!-- 底部固定区域 -->
+      © layui.com
+    </div>
+  </div>
+  <script src="layui/layui.js"></script>
+  <script src="https://unpkg.com/ajax-hook/dist/ajaxhook.min.js"></script>
+  <script>
+    //监听选中页签添加样式
+    layui.config({
+      base: 'plugin/'   //navbar组件js所在目录
+    }).use(['navbar', 'tab','common'], function () {
+      var $ = layui.jquery;
+      var navbar = layui.navbar();
+      var tab = layui.tab;
+      var element = layui.element;
+      navbar.set({
+        elem: '#nav',
+        url: "tree.json"   //数据源地址，我用了本地写的json数据
+      });
+
+      navbar.render();
+
+
+      navbar.on('click(demo)', function (data) {
+        var tabid = data.field.title + "|" + data.field.id;
+
+        //这时会判断右侧.layui-tab-title属性下的有lay-id属性的li的数目，即已经打开的tab项数目
+        if ($(".layui-tab-title li[lay-id]").length <= 0) {
+          //如果比零小，则直接打开新的tab项
+          tab.tabAdd(data.field.href, tabid, data.field.title);
+        } else {
+          //否则判断该tab项是否以及存在
+          var isData = false; //初始化一个标志，为false说明未打开该tab项 为true则说明已有
+          $.each($(".layui-tab-title li[lay-id]"), function () {
+            //如果点击左侧菜单栏所传入的id 在右侧tab项中的lay-id属性可以找到，则说明该tab项已经打开
+            if ($(this).attr("lay-id") == tabid) {
+              isData = true;
+            }
+          })
+
+          if (isData == false) {
+            //标志为false 新增一个tab项
+            tab.tabAdd(data.field.href, tabid, data.field.title);
+          }
+        }
+        //最后不管是否新增tab，最后都转到要打开的选项页面上
+        tab.tabChange(tabid);
+
+        //菜单选中
+        element.on('tab(pagetabs)', function () {
+          var lay_id = this.getAttribute('lay-id');
+          var id = lay_id.split("|")[1];
+          // location.hash = 'pagetabs='+ this.getAttribute('lay-id');
+          //移除选中
+          $(".layui-nav-tree .layui-this").removeClass("layui-this");
+          //添加选中
+          $(".layui-nav-tree a").each(function () {
+            var that = this;
+            if ($(that).data("id") == id) {
+              $(that).parent().addClass("layui-this");
+              return;
+            }
+          });
+
+        });
+
+      });
+
+    });
+
+  </script>
+</body>
+
+</html>

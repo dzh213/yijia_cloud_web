@@ -1,0 +1,196 @@
+[
+    {
+      "id": 1,
+      "icon": "layui-icon-home",
+      "href": "home/home",
+      "title": "首页",
+      "checked": false,
+      "children": [],
+      "parentId": -1,
+      "hasParent": false,
+      "hasChild": false,
+      "sort": 1
+    },
+    {
+      "id": 2,
+      "icon": "layui-icon-home",
+      "href": "",
+      "title": "驾驶证业务",
+      "checked": false,
+      "children": [
+        {
+          "id": 5,
+          "icon": "",
+          "href": "home/home",
+          "title": "报名窗口",
+          "checked": false,
+          "children": [],
+          "parentId": 2,
+          "hasParent": true,
+          "hasChild": false,
+          "sort": 1
+        },
+        {
+          "id": 6,
+          "icon": "",
+          "href": "",
+          "title": "入学受理窗口",
+          "checked": false,
+          "children": [],
+          "parentId": 2,
+          "hasParent": true,
+          "hasChild": false,
+          "sort": 2
+        },
+        {
+          "id": 7,
+          "icon": "",
+          "href": "",
+          "title": "科目一窗口",
+          "checked": false,
+          "children": [],
+          "parentId": 2,
+          "hasParent": true,
+          "hasChild": false,
+          "sort": 3
+        },
+        {
+          "id": 8,
+          "icon": "",
+          "href": "",
+          "title": "培训窗口",
+          "checked": false,
+          "children": [],
+          "parentId": 2,
+          "hasParent": true,
+          "hasChild": false,
+          "sort": 4
+        },
+        {
+          "id": 9,
+          "icon": "",
+          "href": "",
+          "title": "科目四窗口",
+          "checked": false,
+          "children": [],
+          "parentId": 2,
+          "hasParent": true,
+          "hasChild": false,
+          "sort": 5
+        },
+        {
+          "id": 10,
+          "icon": "",
+          "href": "",
+          "title": "绩效考核窗口",
+          "checked": false,
+          "children": [],
+          "parentId": 2,
+          "hasParent": true,
+          "hasChild": false,
+          "sort": 6
+        },
+        {
+          "id": 11,
+          "icon": "",
+          "href": "",
+          "title": "行政管理窗帘",
+          "checked": false,
+          "children": [],
+          "parentId": 2,
+          "hasParent": true,
+          "hasChild": false,
+          "sort": 7
+        },
+        {
+          "id": 12,
+          "icon": "",
+          "href": "",
+          "title": "财务窗口",
+          "checked": false,
+          "children": [],
+          "parentId": 2,
+          "hasParent": true,
+          "hasChild": false,
+          "sort": 8
+        },
+        {
+          "id": 13,
+          "icon": "",
+          "href": "",
+          "title": "审查窗口",
+          "checked": false,
+          "children": [],
+          "parentId": 2,
+          "hasParent": true,
+          "hasChild": false,
+          "sort": 9
+        }
+      ],
+      "parentId": -1,
+      "hasParent": false,
+      "hasChild": true,
+      "sort": 2
+    },
+    {
+      "id": 3,
+      "icon": "layui-icon-home",
+      "href": "",
+      "title": "上岗证业务",
+      "checked": false,
+      "children": [
+        {
+          "id": 14,
+          "icon": "",
+          "href": "",
+          "title": "报名窗口",
+          "checked": false,
+          "children": [],
+          "parentId": 3,
+          "hasParent": true,
+          "hasChild": false,
+          "sort": 1
+        },
+        {
+          "id": 15,
+          "icon": "",
+          "href": "",
+          "title": "培训窗口",
+          "checked": false,
+          "children": [],
+          "parentId": 3,
+          "hasParent": true,
+          "hasChild": false,
+          "sort": 2
+        },
+        {
+          "id": 16,
+          "icon": "",
+          "href": "",
+          "title": "审核查验",
+          "checked": false,
+          "children": [],
+          "parentId": 3,
+          "hasParent": true,
+          "hasChild": false,
+          "sort": 3
+        }
+      ],
+      "parentId": -1,
+      "hasParent": false,
+      "hasChild": true,
+      "sort": 3
+    },
+    {
+      "id": 4,
+      "icon": "layui-icon-home",
+      "href": "",
+      "title": "用户管理",
+      "checked": false,
+      "children": [],
+      "parentId": -1,
+      "hasParent": false,
+      "hasChild": false,
+      "sort": 4
+    }
+  ]
