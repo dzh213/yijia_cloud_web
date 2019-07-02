@@ -59,19 +59,19 @@
     </div>
   </div>
   <script src="layui/layui.js"></script>
-  <script src="https://unpkg.com/ajax-hook/dist/ajaxhook.min.js"></script>
   <script>
     //监听选中页签添加样式
     layui.config({
       base: 'plugin/'   //navbar组件js所在目录
-    }).use(['navbar', 'tab','common'], function () {
-      var $ = layui.jquery;
-      var navbar = layui.navbar();
-      var tab = layui.tab;
-      var element = layui.element;
+    }).use(['navbar', 'tab','common','ajaxaop'], function () {
+      var $ = layui.jquery
+        ,navbar = layui.navbar()
+        ,tab = layui
+        ,common = layui.common
+        ,element = layui.element;
       navbar.set({
         elem: '#nav',
-        url: "tree.json"   //数据源地址，我用了本地写的json数据
+        url: common.auth+"menu/tree"   //数据源地址，我用了本地写的json数据
       });
 
       navbar.render();
