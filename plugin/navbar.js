@@ -55,12 +55,16 @@ layui.define(['element', 'common'], function (exports) {
                         async: false, //_config.async,
                         dataType: 'json',
                         success: function (result, status, xhr) {
+                            if(result.code == 401) {
+                                layer.msg(result.message);
+                                location.href = layui.cache.host + '/login.html';
+                            }
                             //添加缓存
                             layui.data(cacheName, {
                                 key: 'navbar',
-                                value: result
+                                value: result.data
                             });
-                            var html = getHtml(result);
+                            var html = getHtml(result.data);
                             $container.html(html);
                             element.init();
                         },
@@ -83,10 +87,14 @@ layui.define(['element', 'common'], function (exports) {
                 $.ajax({
                     type: _config.type,
                     url: _config.url,
-                    async: false, //_config.async,
+                    async: false, //_config.async, 必须同步，但是响应aop不拦截了
                     dataType: 'json',
                     success: function (result, status, xhr) {
-                        var html = getHtml(result);
+                        if(result.code == 401) {
+                            layer.msg(result.message);
+                            location.href = layui.cache.host + '/login.html';
+                        }
+                        var html = getHtml(result.data);
                         $container.html(html);
                         element.init();
                     },

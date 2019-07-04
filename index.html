@@ -63,15 +63,15 @@
     //监听选中页签添加样式
     layui.config({
       base: 'plugin/'   //navbar组件js所在目录
-    }).use(['navbar', 'tab','common','ajaxaop'], function () {
+    }).use(['navbar', 'tab', 'common', 'ajaxaop'], function () {
       var $ = layui.jquery
-        ,navbar = layui.navbar()
-        ,tab = layui
-        ,common = layui.common
-        ,element = layui.element;
+        , navbar = layui.navbar()
+        , tab = layui.tab
+        , common = layui.common
+        , element = layui.element;
       navbar.set({
         elem: '#nav',
-        url: common.auth+"menu/tree"   //数据源地址，我用了本地写的json数据
+        url: common.auth + "menu/tree"   //数据源地址，我用了本地写的json数据
       });
 
       navbar.render();

@@ -2,23 +2,26 @@ layui.define('ajaxhook',function (exports) {
     hook = hookAjax({
         //拦截回调
         onreadystatechange: function (xhr) {
-            var access_token = xhr.getResponseHeader("access_token")
+            console.log("bbb")
+            var access_token = xhr.getResponseHeader("access-token")
             if(access_token != "") {
-                setCookie("access_token",access_token,15);                
+                setCookie("access-token",access_token,15);                
             }
+            var text = xhr.responseText
+            
         },
         onload: function (xhr) {
-           
+           console.log("aaaa")
         },
         //拦截方法
         open: function (arg, xhr) {
               
         },
         send: function(arg,xhr) {
-            xhr.setRequestHeader("contentType","application/json; charset=utf-8");
-            var access_token = getCookie("access_token");
+            xhr.setRequestHeader("Content-Type","application/json; charset=utf-8");
+            var access_token = getCookie("access-token");
             if(access_token != "") {
-                xhr.setRequestHeader("access_token", access_token)
+                xhr.setRequestHeader("access-token", access_token)
             }
         }
     })
