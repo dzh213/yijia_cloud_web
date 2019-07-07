@@ -2,16 +2,12 @@ layui.define('ajaxhook',function (exports) {
     hook = hookAjax({
         //拦截回调
         onreadystatechange: function (xhr) {
-            console.log("bbb")
             var access_token = xhr.getResponseHeader("access-token")
             if(access_token != "") {
                 setCookie("access-token",access_token,15);                
-            }
-            var text = xhr.responseText
-            
+            }            
         },
         onload: function (xhr) {
-           console.log("aaaa")
         },
         //拦截方法
         open: function (arg, xhr) {
@@ -22,6 +18,9 @@ layui.define('ajaxhook',function (exports) {
             var access_token = getCookie("access-token");
             if(access_token != "") {
                 xhr.setRequestHeader("access-token", access_token)
+            }else{
+                layer.msg("请重新登陆！");
+                location.href = layui.cache.host + '/login.html';
             }
         }
     })
