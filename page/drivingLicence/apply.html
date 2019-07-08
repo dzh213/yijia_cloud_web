@@ -14,59 +14,63 @@
 
 <body>
     <div class="layui-fluid">
-        <div class="layui-row layui-col-space1">
-            <form class="layui-form">
-                <blockquote class="layui-elem-quote quoteBox">
-                    <div class="layui-form-item">
-                        <div class="layui-inline">
-                            <label class="layui-form-label">ID</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="cid" placeholder="请输入" autocomplete="off" class="layui-input">
+        <div class="layui-collapse">
+            <div class="layui-colla-item">
+                <h2 class="layui-colla-title">搜索</h2>
+                <div class="layui-row layui-col-space1 layui-colla-content layui-show">
+                    <form class="layui-form">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">ID</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="cid" placeholder="请输入" autocomplete="off"
+                                        class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">评论者</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="username" placeholder="请输入" autocomplete="off"
+                                        class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">评论内容</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="content" placeholder="请输入" autocomplete="off"
+                                        class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">评论内容</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="content" placeholder="请输入" autocomplete="off"
+                                        class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">评论内容</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="content" placeholder="请输入" autocomplete="off"
+                                        class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">报名日期</label>
+                                <div class="layui-input-block">
+                                    <input type="text" class="layui-input" id="applyDate">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <button class="layui-btn layuiadmin-btn-comm" data-type="reload" lay-submit
+                                    lay-filter="LAY-app-contcomm-search">
+                                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                                </button>
                             </div>
                         </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">评论者</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="username" placeholder="请输入" autocomplete="off"
-                                    class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">评论内容</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="content" placeholder="请输入" autocomplete="off"
-                                    class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">评论内容</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="content" placeholder="请输入" autocomplete="off"
-                                    class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">评论内容</label>
-                            <div class="layui-input-block">
-                                <input type="text" name="content" placeholder="请输入" autocomplete="off"
-                                    class="layui-input">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <label class="layui-form-label">报名日期</label>
-                            <div class="layui-input-block">
-                                <input type="text" class="layui-input" id="applyDate">
-                            </div>
-                        </div>
-                        <div class="layui-inline">
-                            <button class="layui-btn layuiadmin-btn-comm" data-type="reload" lay-submit
-                                lay-filter="LAY-app-contcomm-search">
-                                <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
-                            </button>
-                        </div>
-                    </div>
-                </blockquote>
-            </form>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -74,15 +78,16 @@
     <script>
         layui.config({
             base: '../../plugin/'   //navbar组件js所在目录
-        }).use(['form', 'layer', 'common', 'ajaxaop', 'laydate'], function () {
+        }).use(['form', 'layer', 'common', 'ajaxaop', 'laydate', 'element'], function () {
             var $ = layui.jquery,
                 common = layui.common,
+                element = layui.element,
                 laydate = layui.laydate;
 
             //日期范围选择
             laydate.render({
                 elem: '#applyDate'
-                 ,trigger: 'click'
+                , trigger: 'click'
                 , range: true //或 range: '~' 来自定义分割字符
             });
         });
