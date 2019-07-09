@@ -21,44 +21,88 @@
                     <form class="layui-form">
                         <div class="layui-form-item">
                             <div class="layui-inline">
-                                <label class="layui-form-label">ID</label>
+                                <label class="layui-form-label">姓名</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="cid" placeholder="请输入" autocomplete="off"
+                                    <input type="text" name="studentName" placeholder="请输入" autocomplete="off"
                                         class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-inline">
-                                <label class="layui-form-label">评论者</label>
+                                <label class="layui-form-label">身份证号</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="username" placeholder="请输入" autocomplete="off"
+                                    <input type="text" name="idCard" placeholder="请输入" autocomplete="off"
                                         class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-inline">
-                                <label class="layui-form-label">评论内容</label>
+                                <label class="layui-form-label">电话</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="content" placeholder="请输入" autocomplete="off"
-                                        class="layui-input">
+                                    <input type="text" name="phoneNumber" placeholder="请输入" class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-inline">
-                                <label class="layui-form-label">评论内容</label>
+                                <label class="layui-form-label">备注A</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="content" placeholder="请输入" autocomplete="off"
-                                        class="layui-input">
+                                    <input type="text" name="remarkA" placeholder="请输入" class="layui-input">
                                 </div>
                             </div>
                             <div class="layui-inline">
-                                <label class="layui-form-label">评论内容</label>
+                                <label class="layui-form-label">备注C</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="content" placeholder="请输入" autocomplete="off"
-                                        class="layui-input">
+                                    <input type="text" name="remarkC" placeholder="请输入" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">车型</label>
+                                <div class="layui-input-block">
+                                    <select id="carType" name="carType" lay-search>
+                                        <option value="">请选择</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">培训状态</label>
+                                <div class="layui-input-block">
+                                    <select id="trainStatus" name="trainStatus" lay-search>
+                                        <option value="">请选择</option>
+                                        <option value="1">在训</option>
+                                        <option value="2">结业</option>
+                                        <option value="3">不合格</option>
+                                        <option value="4">结业</option>
+                                        <option value="5">过期</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">介绍人</label>
+                                <div class="layui-input-block">
+                                    <select id="introducerId" name="introducerId" lay-search>
+                                        <option value="">请选择</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="layui-inline">
                                 <label class="layui-form-label">报名日期</label>
                                 <div class="layui-input-block">
                                     <input type="text" class="layui-input" id="applyDate">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">培训日期</label>
+                                <div class="layui-input-block">
+                                    <input type="text" class="layui-input" id="trainDate">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">起保日期</label>
+                                <div class="layui-input-block">
+                                    <input type="text" class="layui-input" id="insureDate">
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">退学日期</label>
+                                <div class="layui-input-block">
+                                    <input type="text" class="layui-input" id="dropDate">
                                 </div>
                             </div>
                             <div class="layui-inline">
@@ -80,6 +124,7 @@
             base: '../../plugin/'   //navbar组件js所在目录
         }).use(['form', 'layer', 'common', 'ajaxaop', 'laydate', 'element'], function () {
             var $ = layui.jquery,
+                form = layui.form,
                 common = layui.common,
                 element = layui.element,
                 laydate = layui.laydate;
@@ -90,6 +135,55 @@
                 , trigger: 'click'
                 , range: true //或 range: '~' 来自定义分割字符
             });
+            laydate.render({
+                elem: '#trainDate'
+                , trigger: 'click'
+                , range: true //或 range: '~' 来自定义分割字符
+            });
+            laydate.render({
+                elem: '#insureDate'
+                , trigger: 'click'
+                , range: true //或 range: '~' 来自定义分割字符
+            });
+            laydate.render({
+                elem: '#dropDate'
+                , trigger: 'click'
+                , range: true //或 range: '~' 来自定义分割字符
+            });
+
+            $.ajax({
+                url: common.admin + "/valsys/getCarTypes",
+                type: "GET",
+                dataType: "json",
+                success: function (result) {
+                    if (result.code == 200) {
+                        $.each(result.data, function (index, item) {
+                            $("#carType").append('<option value="' + item + '">' + item + '</option>')
+                        })
+                        form.render("select");            // 刷性select，显示出数据
+                    }
+
+                }
+            })
+
+            //介绍人
+            $.ajax({
+                url: common.admin + "/valsys/getUsers",
+                type: "GET",
+                dataType: "json",
+                success: function (result) {
+                    if (result.code == 200) {
+                        $.each(result.data, function (index, item) {
+                            $("#introducerId").append('<option value="' + item.userId + '">' + item.userName + '</option>')
+                        })
+                        form.render("select");            // 刷性select，显示出数据
+                    }
+
+                }
+            })
+
+
+
         });
     </script>
 </body>

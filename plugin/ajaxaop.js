@@ -3,7 +3,7 @@ layui.define('ajaxhook',function (exports) {
         //拦截回调
         onreadystatechange: function (xhr) {
             var access_token = xhr.getResponseHeader("access-token")
-            if(access_token != "") {
+            if(access_token != "" && access_token != null) {
                 setCookie("access-token",access_token,15);                
             }            
         },

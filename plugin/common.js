@@ -6,7 +6,8 @@ layui.define(['layer'], function(exports) {
     var domain = "http://gateway.yjjxjd.cn";
     var common = {
         domain: domain,
-        auth: domain + "/yijia-auth/",
+        auth: domain + "/yijia-auth",
+        admin: domain + "/yijia-admin",
         /**
          * 抛出一个异常错误信息
          * @param {String} msg
