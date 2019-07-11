@@ -110,19 +110,22 @@
                                     lay-filter="LAY-app-contcomm-search">
                                     <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                                 </button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+
+        <table id="studentTable"></table>
     </div>
 
     <script src="../../layui/layui.js"></script>
     <script>
         layui.config({
             base: '../../plugin/'   //navbar组件js所在目录
-        }).use(['form', 'layer', 'common', 'ajaxaop', 'laydate', 'element'], function () {
+        }).use(['form', 'layer', 'common', 'ajaxaop', 'laydate', 'element','studentTable'], function () {
             var $ = layui.jquery,
                 form = layui.form,
                 common = layui.common,

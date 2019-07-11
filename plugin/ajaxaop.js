@@ -14,7 +14,7 @@ layui.define('ajaxhook',function (exports) {
               
         },
         send: function(arg,xhr) {
-            xhr.setRequestHeader("Content-Type","application/json; charset=utf-8");
+            // xhr.setRequestHeader("Content-Type","application/json; charset=utf-8");
             var access_token = getCookie("access-token");
             if(access_token != "") {
                 xhr.setRequestHeader("access-token", access_token)
