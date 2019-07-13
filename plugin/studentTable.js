@@ -1,8 +1,7 @@
-layui.use(['table', 'ajaxaop', 'common'], function () {
+layui.define(['table', 'common'], function (exports) {
     var table = layui.table;
     var common = layui.common;
 
-    //系统日志
     table.render({
         elem: '#studentTable',
         url: common.admin + "/student/list",
@@ -23,6 +22,7 @@ layui.use(['table', 'ajaxaop', 'common'], function () {
         response: {
             statusCode: 200 //规定成功的状态码，默认：0
         },
+        toolbar: '#applytoolbar',
         cellMinWidth: 95,
         page: true,
         height: "full-20",
@@ -30,8 +30,9 @@ layui.use(['table', 'ajaxaop', 'common'], function () {
         limits: [10, 15, 20, 25],
         // id : "systemLog",
         cols: [[
-            { field: '', title: '序号',type: 'numbers' },
-            { field: 'applyDate', title: '报名日期',width: 110 },
+            {type:'radio'},
+            { field: '', title: '序号', type: 'numbers' },
+            { field: 'applyDate', title: '报名日期', width: 110 },
             { field: 'studentNumber', title: '学员编号', align: "center" },
             { field: 'studentName', title: '姓名' },
             { field: 'idCard', title: '身份证号' },
@@ -43,15 +44,17 @@ layui.use(['table', 'ajaxaop', 'common'], function () {
             { field: 'tuition', title: '金额' },
             { field: 'addToPrice', title: '追加金额' },
             { field: 'addToPriceDate', title: '追加日期' },
-            { field: 'stage', title: '阶段',templet: function(param) {
+            {
+                field: 'stage', title: '阶段', templet: function (param) {
 
-            } },
+                }
+            },
             { field: 'dropOutDate', title: '退学日期' },
             { field: 'refundPrice', title: '退学金额' },
             { field: 'remarkA', title: '备注A' },
             { field: 'remarkC', title: '备注C' },
-            { field: 'insureDate', title: '起保日期' ,width: 110},
-            { field: 'trainDate', title: '培训日期' ,width: 110}
+            { field: 'insureDate', title: '起保日期', width: 110 },
+            { field: 'trainDate', title: '培训日期', width: 110 }
             // {field: 'method', title: '操作方式', align:'center',templet:function(d){
             //     if(d.method.toUpperCase() == "GET"){
             //         return '<span class="layui-blue">'+d.method+'</span>'
@@ -75,4 +78,23 @@ layui.use(['table', 'ajaxaop', 'common'], function () {
         ]]
     });
 
+    //头工具栏事件
+    table.on('toolbar(studentTable)', function (obj) {
+        var checkStatus = table.checkStatus(obj.config.id);
+        switch (obj.event) {
+            case 'addStudentBtn':
+                var data = checkStatus.data;
+                layer.alert(JSON.stringify(data));
+                break;
+            case 'editStudentBtn':
+                var data = checkStatus.data;
+                layer.msg('选中了：' + data.length + ' 个');
+                break;
+            case 'isAll':
+                layer.msg(checkStatus.isAll ? '全选' : '未全选');
+                break;
+        };
+    });
+
+    exports('studentTable', {});
 })

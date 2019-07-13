@@ -56,7 +56,7 @@ layui.define(['element', 'common','tab'], function (exports) {
                         async: false, //_config.async,
                         dataType: 'json',
                         success: function (result, status, xhr) {
-                            if(result.code == 401) {
+                            if(result.code != 200) {
                                 layer.msg(result.message);
                                 location.href = layui.cache.host + '/login.html';
                             }
@@ -91,7 +91,7 @@ layui.define(['element', 'common','tab'], function (exports) {
                     async: false, //_config.async, 必须同步，但是响应aop不拦截了
                     dataType: 'json',
                     success: function (result, status, xhr) {
-                        if(result.code == 401) {
+                        if(result.code != 200) {
                             layer.msg(result.message);
                             location.href = layui.cache.host + '/login.html';
                         }

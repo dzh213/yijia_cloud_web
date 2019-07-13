@@ -118,14 +118,21 @@
             </div>
         </div>
 
-        <table id="studentTable"></table>
+        <table id="studentTable" lay-filter="studentTable"></table>
     </div>
 
     <script src="../../layui/layui.js"></script>
+    <script type="text/html" id="applytoolbar">
+        <div class="layui-btn-container">
+          <button class="layui-btn layui-btn-sm" lay-event="addStudentBtn">新增学员</button>
+          <button class="layui-btn layui-btn-sm" lay-event="editStudentBtn">修改学员</button>
+        </div>
+    </script>
+
     <script>
         layui.config({
             base: '../../plugin/'   //navbar组件js所在目录
-        }).use(['form', 'layer', 'common', 'ajaxaop', 'laydate', 'element','studentTable'], function () {
+        }).use(['form', 'layer', 'common', 'ajaxaop', 'laydate', 'element', 'studentTable'], function () {
             var $ = layui.jquery,
                 form = layui.form,
                 common = layui.common,
